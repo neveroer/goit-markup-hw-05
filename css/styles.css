@@ -79,6 +79,20 @@ img {
   white-space: nowrap;
   width: 1px;
 }
+/* добавляет подчеркивание активной странице */
+.current::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  display: block;
+  width: 100%;
+  height: 4px;
+
+  border-radius: 2px;
+  background-color: var(--accent-color);
+}
 
 .button {
   text-decoration: none;
@@ -112,9 +126,6 @@ img {
   line-height: 1.67;
   text-align: center;
   color: var(--secondary-text-color);
-}
-
-.current {
 }
 
 /* хедер */
@@ -153,6 +164,7 @@ img {
 
 .nav-link,
 .address-link {
+  position: relative;
   display: flex;
   align-items: center;
   padding-top: 32px;
@@ -632,21 +644,12 @@ footer {
   color: var(--primary-text-color);
 }
 
-.technokrjak {
+.overlay-container {
   position: relative;
+  overflow: hidden;
 }
 
-.technokrjak::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  background-color: rgba(33, 150, 243, 0.9);
-}
-
+.project-overlay,
 .project-description {
   position: absolute;
   left: 0;
@@ -654,7 +657,9 @@ footer {
   width: 100%;
   height: 100%;
   opacity: 0;
+}
 
+.project-description {
   display: block;
   padding-top: 63px;
   padding-right: 24px;
@@ -667,6 +672,20 @@ footer {
   color: var(--third-text-color);
 }
 
+.project-overlay {
+  background-color: rgba(33, 150, 243, 0.9);
+
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-link:hover .project-overlay {
+  transform: translateY(0);
+  opacity: 1;
+}
+
 .project-link:hover,
 .project-link:focus {
   box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.16), 0px 4px 4px rgba(0, 0, 0, 0.06),
@@ -676,9 +695,5 @@ footer {
 .project-link:hover .project-description,
 .project-link:focus .project-description {
   opacity: 1;
-}
-
-.project-link:hover .technokrjak::before,
-.project-link:focus .technokrjak::before {
-  opacity: 1;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
