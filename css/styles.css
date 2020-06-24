@@ -13,7 +13,10 @@
   --icons-bg: rgba(255, 255, 255, 0.1);
   --main-font: "Roboto", sans-serif;
   --accent-font: "Raleway", sans-serif;
+  --duration: 250ms;
+  --timing: cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 html {
   box-sizing: border-box;
 }
@@ -80,7 +83,8 @@ img {
   width: 1px;
 }
 /* добавляет подчеркивание активной странице */
-.current::after {
+.current::after,
+.nav-hover::after {
   content: "";
   position: absolute;
   left: 0;
@@ -92,6 +96,18 @@ img {
 
   border-radius: 2px;
   background-color: var(--accent-color);
+}
+
+.nav-hover::after {
+  opacity: 0;
+  transform: scaleX(0);
+  transition: opacity var(--duration) var(--timing),
+    transform var(--duration) var(--timing);
+}
+
+.nav-hover:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
 }
 
 .button {
@@ -109,6 +125,10 @@ img {
   border-radius: 4px;
   padding: 10px 32px;
   min-width: 200px;
+
+  transition: color var(--duration) var(--timing),
+    border-color var(--duration) var(--timing),
+    background-color var(--duration) var(--timing);
 }
 
 .button:hover,
@@ -165,11 +185,14 @@ img {
 .nav-link,
 .address-link {
   position: relative;
+
   display: flex;
   align-items: center;
   padding-top: 32px;
   padding-bottom: 32px;
   color: var(--secondary-text-color);
+
+  transition: color var(--duration) var(--timing);
 }
 
 .nav-link:visited {
@@ -201,6 +224,8 @@ img {
   color: var(--primary-text-color);
   fill: var(--primary-text-color);
   font-style: normal;
+
+  transition: fill var(--duration) var(--timing);
 }
 
 .address-link:hover,
@@ -383,11 +408,9 @@ img {
   fill: var(--icons-color);
   width: 44px;
   height: 44px;
-  /* display: flex;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%; */
+
+  transition: background-color var(--duration) var(--timing),
+    fill var(--duration) var(--timing);
 }
 
 .social-link:hover,
@@ -415,6 +438,9 @@ img {
   border: 1px solid var(--icons-color);
   border-radius: 4px;
   fill: var(--icons-color);
+
+  transition: border-color var(--duration) var(--timing),
+    fill var(--duration) var(--timing);
 }
 
 .company-item:hover,
@@ -422,10 +448,6 @@ img {
   border-color: var(--accent-color);
   fill: var(--accent-color);
 }
-
-/* .company-icon {
-  align-self: center;
-} */
 
 /* footer */
 footer {
@@ -469,6 +491,8 @@ footer {
 
 .address-map {
   color: var(--third-text-color);
+
+  transition: color var(--duration) var(--timing);
 }
 
 .footer-address-links {
@@ -480,15 +504,17 @@ footer {
   margin-bottom: 9px;
 }
 
+.mail-phone {
+  color: var(--footer-adress-color);
+
+  transition: color var(--duration) var(--timing);
+}
+
 .address-map:hover,
 .address-map:focus,
 .mail-phone:hover,
 .mail-phone:focus {
   color: var(--accent-color);
-}
-
-.mail-phone {
-  color: var(--footer-adress-color);
 }
 
 .footer-call {
@@ -530,7 +556,10 @@ footer {
   justify-content: center;
   align-items: center;
   fill: var(--third-text-color);
+
+  transition: fill var(--duration) var(--timing);
 }
+
 .button-footer:focus,
 .button-footer:hover {
   fill: var(--accent-color);
@@ -545,6 +574,8 @@ footer {
   line-height: 1.88;
   text-align: center;
   letter-spacing: 0.06em;
+
+  transition: fill var(--duration) var(--timing);
 }
 
 .subscribe-svg:hover,
@@ -595,6 +626,11 @@ footer {
   background-color: var(--secondary-background-color);
   border: 1px solid transparent;
   border-radius: 4px;
+
+  transition: background-color var(--duration) var(--timing),
+    color var(--duration) var(--timing),
+    border-color var(--duration) var(--timing),
+    box-shadow var(--duration) var(--timing);
 }
 
 .filter-button:hover,
