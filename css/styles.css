@@ -457,12 +457,17 @@ footer {
 .container-footer {
   padding-top: 45px;
   padding-bottom: 60px;
+  /* при наличии копирайта */
+  /* padding-bottom: 0; */
 }
 
 .footer-flex {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+  /* при наличии копирайта */
+  /* padding-bottom: 28px;
+  border-bottom: 1px solid var(--icons-bg); */
 }
 
 .footer-logo {
@@ -575,13 +580,27 @@ footer {
   text-align: center;
   letter-spacing: 0.06em;
 
-  transition: fill var(--duration) var(--timing);
+  transition: fill var(--duration) var(--timing),
+    color var(--duration) var(--timing),
+    border-color var(--duration) var(--timing),
+    background-color var(--duration) var(--timing);
 }
 
 .subscribe-svg:hover,
 .subscribe-svg:focus {
   fill: var(--accent-color);
 }
+
+/* .copyright {
+  padding-top: 18px;
+  padding-bottom: 21px;
+
+  font-size: 12px;
+  line-height: 2;
+  text-align: center;
+  color: var(--footer-copyright-color);
+} */
+
 /* portfolio */
 /* logo */
 .line {
